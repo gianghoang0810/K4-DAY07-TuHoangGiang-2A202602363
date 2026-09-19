@@ -1,0 +1,247 @@
+{
+  "embedding_backend": "gemini-embedding-001",
+  "chat_model": "gemini-3.6-flash",
+  "parent_count": 115,
+  "child_count": 242,
+  "results": [
+    {
+      "id": 1,
+      "query": "What are the UTSC Library's regular opening hours from Monday to Friday between September 8 and December 22, 2026?",
+      "gold": "The library's regular weekday hours are 8:00 AM to 10:00 PM. It is closed on October 12, 2026.",
+      "top3": [
+        {
+          "id": "utsc-library-hours#parent-0",
+          "doc_id": "utsc-library-hours",
+          "parent_id": "utsc-library-hours#parent-0",
+          "section": "UTSC Library hours",
+          "score": 0.8495029877588898,
+          "contains_evidence": false
+        },
+        {
+          "id": "utsc-library-hours#parent-1",
+          "doc_id": "utsc-library-hours",
+          "parent_id": "utsc-library-hours#parent-1",
+          "section": "Library Hours",
+          "score": 0.7596652096920743,
+          "contains_evidence": true
+        },
+        {
+          "id": "utsc-library-spaces#parent-9",
+          "doc_id": "utsc-library-spaces",
+          "parent_id": "utsc-library-spaces#parent-9",
+          "section": "Renovations at the U of T Scarborough Library",
+          "score": 0.7348732290819294,
+          "contains_evidence": false
+        }
+      ],
+      "answer": "Between September 8 and December 22, 2026, the UTSC Library's regular opening hours from Monday to Friday are 8:00 AM to 10:00 PM [2].",
+      "relevant_in_top3": true,
+      "answer_contains_evidence": false,
+      "score": 1
+    },
+    {
+      "id": 2,
+      "query": "As an undergraduate student, how long can I borrow regular library items, and what is my item limit?",
+      "gold": "Undergraduate students have a regular loan period of 14 days and an item limit of 50.",
+      "top3": [
+        {
+          "id": "utsc-borrowing-policy#parent-1",
+          "doc_id": "utsc-borrowing-policy",
+          "parent_id": "utsc-borrowing-policy#parent-1",
+          "section": "Loan privileges by patron type at most University of Toronto Libraries",
+          "score": 0.7638523166608103,
+          "contains_evidence": true
+        },
+        {
+          "id": "utsc-borrowing-policy#parent-5",
+          "doc_id": "utsc-borrowing-policy",
+          "parent_id": "utsc-borrowing-policy#parent-5",
+          "section": "Periodicals",
+          "score": 0.7566041160331131,
+          "contains_evidence": false
+        },
+        {
+          "id": "utsc-borrowing-policy#parent-8",
+          "doc_id": "utsc-borrowing-policy",
+          "parent_id": "utsc-borrowing-policy#parent-8",
+          "section": "Unlimited renewals",
+          "score": 0.7362067326656785,
+          "contains_evidence": false
+        }
+      ],
+      "answer": "As an undergraduate student, the loan period for regular library items is 14 days (with an unlimited maximum potential loan period), and the item limit is 50 items [1].",
+      "relevant_in_top3": true,
+      "answer_contains_evidence": true,
+      "score": 2
+    },
+    {
+      "id": 3,
+      "query": "Where should a user return a borrowed laptop from the Technology Loans collection?",
+      "gold": "A borrowed laptop should be returned directly to the Info Desk.",
+      "top3": [
+        {
+          "id": "utsc-technology-loans#parent-1",
+          "doc_id": "utsc-technology-loans",
+          "parent_id": "utsc-technology-loans#parent-1",
+          "section": "Borrowing and return information",
+          "score": 0.8078941991310382,
+          "contains_evidence": true
+        },
+        {
+          "id": "utsc-borrowing-policy#parent-10",
+          "doc_id": "utsc-borrowing-policy",
+          "parent_id": "utsc-borrowing-policy#parent-10",
+          "section": "Returns",
+          "score": 0.7289450624246387,
+          "contains_evidence": false
+        }
+      ],
+      "answer": "A borrowed laptop should be returned directly to the Info Desk [1].",
+      "relevant_in_top3": true,
+      "answer_contains_evidence": true,
+      "score": 2
+    },
+    {
+      "id": 4,
+      "query": "A student needs to find a physical course reading placed on reserve. Where is it located?",
+      "gold": "Physical course reserves are located 20 steps to the left of the InfoDesk at the UTSC Library.",
+      "top3": [
+        {
+          "id": "utsc-course-reserves#parent-2",
+          "doc_id": "utsc-course-reserves",
+          "parent_id": "utsc-course-reserves#parent-2",
+          "section": "Where are physical course reserves located?",
+          "score": 0.8958110168809114,
+          "contains_evidence": true
+        },
+        {
+          "id": "utsc-course-reserves#parent-1",
+          "doc_id": "utsc-course-reserves",
+          "parent_id": "utsc-course-reserves#parent-1",
+          "section": "What are course reserves?",
+          "score": 0.7738159894053406,
+          "contains_evidence": false
+        },
+        {
+          "id": "utsc-course-reserves#parent-3",
+          "doc_id": "utsc-course-reserves",
+          "parent_id": "utsc-course-reserves#parent-3",
+          "section": "Where are online course reserves located?",
+          "score": 0.7636058544008766,
+          "contains_evidence": false
+        }
+      ],
+      "answer": "Physical course reserves are located in the Course Reserves/Short Term Loan section at the UTSC Library [1], [2], specifically 20 steps to the left of the InfoDesk [1].",
+      "relevant_in_top3": true,
+      "answer_contains_evidence": true,
+      "score": 2
+    },
+    {
+      "id": 5,
+      "query": "Which service provides a free and secure University of Toronto repository for disseminating and preserving faculty and graduate-student research?",
+      "gold": "TSpace – University of Toronto Research Repository.",
+      "top3": [
+        {
+          "id": "utsc-research-publishing#parent-10",
+          "doc_id": "utsc-research-publishing",
+          "parent_id": "utsc-research-publishing#parent-10",
+          "section": "TSpace - University of Toronto Research Repository",
+          "score": 0.7952489014824337,
+          "contains_evidence": true
+        },
+        {
+          "id": "utsc-research-publishing#parent-11",
+          "doc_id": "utsc-research-publishing",
+          "parent_id": "utsc-research-publishing#parent-11",
+          "section": "Journal Production Services",
+          "score": 0.7604269199707209,
+          "contains_evidence": false
+        },
+        {
+          "id": "utsc-research-publishing#parent-12",
+          "doc_id": "utsc-research-publishing",
+          "parent_id": "utsc-research-publishing#parent-12",
+          "section": "U of T Dataverse in Borealis",
+          "score": 0.7206664486994216,
+          "contains_evidence": false
+        }
+      ],
+      "answer": "TSpace provides a free and secure research repository for disseminating and preserving faculty and graduate student research [1].",
+      "relevant_in_top3": true,
+      "answer_contains_evidence": false,
+      "score": 1
+    }
+  ],
+  "ab_test_query_4": {
+    "unfiltered": {
+      "id": 4,
+      "query": "A student needs to find a physical course reading placed on reserve. Where is it located?",
+      "gold": "Physical course reserves are located 20 steps to the left of the InfoDesk at the UTSC Library.",
+      "top3": [
+        {
+          "id": "utsc-course-reserves#parent-2",
+          "doc_id": "utsc-course-reserves",
+          "parent_id": "utsc-course-reserves#parent-2",
+          "section": "Where are physical course reserves located?",
+          "score": 0.8958110168809114,
+          "contains_evidence": true
+        },
+        {
+          "id": "utsc-course-reserves#parent-1",
+          "doc_id": "utsc-course-reserves",
+          "parent_id": "utsc-course-reserves#parent-1",
+          "section": "What are course reserves?",
+          "score": 0.7738159894053406,
+          "contains_evidence": false
+        },
+        {
+          "id": "utsc-course-reserves#parent-3",
+          "doc_id": "utsc-course-reserves",
+          "parent_id": "utsc-course-reserves#parent-3",
+          "section": "Where are online course reserves located?",
+          "score": 0.7636058544008766,
+          "contains_evidence": false
+        }
+      ],
+      "answer": "Physical course reserves are located in the Course Reserves/Short Term Loan section at the UTSC Library [1], [2], specifically 20 steps to the left of the InfoDesk [1].",
+      "relevant_in_top3": true,
+      "answer_contains_evidence": true,
+      "score": 2
+    },
+    "audience_student": {
+      "id": 4,
+      "query": "A student needs to find a physical course reading placed on reserve. Where is it located?",
+      "gold": "Physical course reserves are located 20 steps to the left of the InfoDesk at the UTSC Library.",
+      "top3": [
+        {
+          "id": "utsc-course-reserves#parent-2",
+          "doc_id": "utsc-course-reserves",
+          "parent_id": "utsc-course-reserves#parent-2",
+          "section": "Where are physical course reserves located?",
+          "score": 0.8958110168809114,
+          "contains_evidence": true
+        },
+        {
+          "id": "utsc-course-reserves#parent-1",
+          "doc_id": "utsc-course-reserves",
+          "parent_id": "utsc-course-reserves#parent-1",
+          "section": "What are course reserves?",
+          "score": 0.7738159894053406,
+          "contains_evidence": false
+        },
+        {
+          "id": "utsc-course-reserves#parent-3",
+          "doc_id": "utsc-course-reserves",
+          "parent_id": "utsc-course-reserves#parent-3",
+          "section": "Where are online course reserves located?",
+          "score": 0.7636058544008766,
+          "contains_evidence": false
+        }
+      ],
+      "answer": "Physical course reserves are located in the Course Reserves/Short Term Loan section at the UTSC Library [1], [2], specifically 20 steps to the left of the InfoDesk [1].",
+      "relevant_in_top3": true,
+      "answer_contains_evidence": true,
+      "score": 2
+    }
+  }
+}
