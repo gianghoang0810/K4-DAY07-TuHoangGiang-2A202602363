@@ -68,15 +68,15 @@ Ba tài liệu đại diện cho những khác biệt về độ dài và cấu 
 
 | Tài liệu | Chiến lược (Strategy) | Số lượng Chunk | Độ dài trung bình | Giữ được ngữ cảnh không? |
 |-----------|----------|-------------|------------|-------------------|
-| UTSC Library borrowing policy | FixedSizeChunker (`fixed_size`) | | | |
-| UTSC Library borrowing policy | SentenceChunker (`by_sentences`) | | | |
-| UTSC Library borrowing policy | RecursiveChunker (`recursive`) | | | |
-| Technology loans | FixedSizeChunker (`fixed_size`) | | | |
-| Technology loans | SentenceChunker (`by_sentences`) | | | |
-| Technology loans | RecursiveChunker (`recursive`) | | | |
-| Course reserves and short-term loans | FixedSizeChunker (`fixed_size`) | | | |
-| Course reserves and short-term loans | SentenceChunker (`by_sentences`) | | | |
-| Course reserves and short-term loans | RecursiveChunker (`recursive`) | | | |
+| UTSC Library borrowing policy | FixedSizeChunker (`fixed_size`) | 19 | 479.26 | Kém (thường bị cắt ngang câu/đoạn) |
+| UTSC Library borrowing policy | SentenceChunker (`by_sentences`) | 8 | 1022.75 | Khá (giữ trọn câu, nhưng chunk dài) |
+| UTSC Library borrowing policy | RecursiveChunker (`recursive`) | 19 | 429.95 | Tốt (ưu tiên tách theo đoạn, danh sách) |
+| Technology loans | FixedSizeChunker (`fixed_size`) | 40 | 489.38 | Kém (cắt ngang thông số kỹ thuật thiết bị) |
+| Technology loans | SentenceChunker (`by_sentences`) | 38 | 460.82 | Tốt (chia đều, thông tin kỹ thuật gọn gàng) |
+| Technology loans | RecursiveChunker (`recursive`) | 40 | 438.05 | Tốt (tách đúng theo từng thiết bị/đầu mục) |
+| Course reserves and short-term loans | FixedSizeChunker (`fixed_size`) | 4 | 456.50 | Kém (cắt ngang phần giải thích) |
+| Course reserves and short-term loans | SentenceChunker (`by_sentences`) | 4 | 417.25 | Tốt (đoạn giải thích ngắn nên vừa vặn) |
+| Course reserves and short-term loans | RecursiveChunker (`recursive`) | 4 | 417.25 | Tốt (tách đúng theo câu hỏi/trả lời) |
 
 ### Chiến lược của từng thành viên
 
