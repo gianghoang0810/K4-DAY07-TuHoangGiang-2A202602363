@@ -48,10 +48,10 @@ Giải thích cách tiếp cận của bạn khi lập trình (implement) các p
 ### Các hàm chia nhỏ (Chunking Functions)
 
 **`SentenceChunker.chunk`** — hướng tiếp cận:
-> Tôi dự kiến dùng regex dựa trên dấu kết thúc câu, chẳng hạn `(?<=[.!?])(?:\s+|\n+)`, để tách câu nhưng vẫn giữ dấu câu trong nội dung. Các câu được gom theo `max_sentences_per_chunk`; chuỗi rỗng trả về danh sách rỗng, khoảng trắng thừa được loại bỏ, còn văn bản không có dấu kết thúc câu được giữ thành một câu duy nhất.
+> Tôi đã triển khai bằng regex dựa trên dấu kết thúc câu, chẳng hạn `(?<=[.!?])(?:\s+|\n+)`, để tách câu nhưng vẫn giữ dấu câu trong nội dung. Các câu được gom theo `max_sentences_per_chunk`; chuỗi rỗng trả về danh sách rỗng, khoảng trắng thừa được loại bỏ, còn văn bản không có dấu kết thúc câu được giữ thành một câu duy nhất.
 
 **`RecursiveChunker.chunk` / `_split`** — hướng tiếp cận:
-> Thuật toán thử các separator theo thứ tự `\n\n`, `\n`, `. `, khoảng trắng và cuối cùng là ký tự, nhằm ưu tiên ranh giới tự nhiên lớn trước. Nếu một phần vẫn dài hơn `chunk_size`, `_split` tiếp tục xử lý bằng separator kế tiếp; các phần nhỏ liền kề được ghép lại đến gần giới hạn. Base case là văn bản rỗng, văn bản đã không vượt giới hạn, hết separator hoặc không thể tách tiếp; khi đó thuật toán cắt cứng theo `chunk_size` nếu cần.
+> Tôi đã triển khai thuật toán thử các separator theo thứ tự `\n\n`, `\n`, `. `, khoảng trắng và cuối cùng là ký tự, nhằm ưu tiên ranh giới tự nhiên lớn trước. Nếu một phần vẫn dài hơn `chunk_size`, `_split` tiếp tục xử lý bằng separator kế tiếp; các phần nhỏ liền kề được ghép lại đến gần giới hạn. Base case là văn bản rỗng, văn bản đã không vượt giới hạn, hết separator hoặc không thể tách tiếp; khi đó thuật toán cắt cứng theo `chunk_size` nếu cần.
 
 ### Lớp EmbeddingStore
 
@@ -68,13 +68,16 @@ Giải thích cách tiếp cận của bạn khi lập trình (implement) các p
 
 ### Chiến lược truy xuất cá nhân — Parent-child
 
+- **Vai trò trong nhóm:** Thành viên 3 — Từ Hoàng Giang.
 - **Loại chiến lược:** Custom Parent-child.
+- **Bộ benchmark:** sử dụng đúng 5 query và gold answer thống nhất trong `REPORT_NHOM.md`, với `top_k=3`.
 - **Embedding backend:** Gemini API với model `gemini-embedding-001`, được dùng thống nhất để embedding cả chunk con và câu hỏi truy xuất. Smoke test thành công trên Python 3.13.1: model trả về vector 3.072 chiều và toàn bộ giá trị đều hữu hạn.
-- **Cấu hình dự kiến:** chunk con khoảng 200–300 ký tự để tìm kiếm; section cha khoảng 500–800 ký tự để đưa vào ngữ cảnh trả lời.
+- **Cấu hình đã sử dụng:** chunk con khoảng 200–300 ký tự để tìm kiếm; section cha khoảng 500–800 ký tự để đưa vào ngữ cảnh trả lời.
 - **Cách tổ chức:** mỗi chunk con lưu thêm `parent_id`, `section`, `doc_id` và các metadata gốc. Khi tìm kiếm, hệ thống xếp hạng chunk con; sau đó lấy các section cha tương ứng, loại trùng và đưa chúng vào prompt của agent.
 - **Lý do chọn:** Chunk con nhỏ hướng tới retrieval precision cao, còn chunk cha giữ đủ nội dung của mục dịch vụ hoặc quy định. Thử nghiệm này kiểm tra liệu mở rộng sang parent có khắc phục trường hợp hệ thống tìm đúng chi tiết nhưng agent thiếu ngữ cảnh xung quanh hay không.
-- **Giả thuyết trước khi chạy:** Parent-child có thể hiệu quả với các mục gồm nhiều câu liên quan như quy định mượn tài liệu và Technology Loans, nhưng cần quản lý quan hệ cha–con và có thể đưa thêm nội dung không cần thiết vào prompt. Chiến lược Heading/structural của nhóm được kỳ vọng là baseline mạnh vì corpus Markdown có heading rõ ràng; kết luận cuối cùng sẽ dựa trên 5 benchmark query.
-- **Code triển khai:** `benchmark_parent_child.py`; smoke test bằng mock đã tạo 115 parent và 242 child, parent tối đa 795 ký tự, child tối đa 250 ký tự. Kết quả child được ánh xạ về parent trước khi đưa vào agent.
+- **Giả thuyết và kết quả:** Parent-child phù hợp với các mục gồm nhiều câu liên quan như quy định mượn tài liệu và Technology Loans, nhưng cần quản lý quan hệ cha–con và có thể đưa thêm nội dung không cần thiết vào prompt. Kết quả 5 benchmark query cho thấy cả 5 câu đều có parent liên quan trong top-3; điểm agent là 9/10. Hạn chế quan sát được là câu trả lời giờ mở cửa đã bỏ sót ngoại lệ ngày 12/10.
+- **Code triển khai:** `benchmark_parent_child.py`; smoke test trên corpus đã đồng bộ tạo 54 parent và 118 child, parent tối đa 790 ký tự, child tối đa 250 ký tự. Kết quả child được ánh xạ về parent trước khi đưa vào agent.
+- **Lệnh đánh giá:** `python bench_gemini.py --data-dir data/utsc-library-services --output benchmark_results_gemini.json`.
 
 Đoạn code cốt lõi của chiến lược:
 
@@ -139,18 +142,20 @@ Chạy **5 câu hỏi đánh giá của nhóm** trên mã nguồn cá nhân củ
 
 | # | Câu hỏi (Query) | Top-1 Chunk truy xuất được (tóm tắt) | Điểm Score | Có liên quan không? (Relevant) | Câu trả lời của Agent (tóm tắt) |
 |---|-------|--------------------------------|-------|-----------|------------------------|
-| 1 | What are the UTSC Library's regular opening hours from Monday to Friday between September 8 and December 22, 2026? | `utsc-library-hours#parent-1` — Library Hours | 0.760 | Có, trong top-3 | 8:00 AM–10:00 PM; agent trả lời đúng giờ nhưng bỏ sót ngoại lệ 12/10. |
-| 2 | As an undergraduate student, how long can I borrow regular library items, and what is my item limit? | `utsc-borrowing-policy#parent-1` — Loan privileges by patron type | 0.764 | Có, top-1 | 14 ngày, gia hạn không giới hạn, tối đa 50 món. |
-| 3 | Where should a user return a borrowed laptop from the Technology Loans collection? | `utsc-technology-loans#parent-1` — Borrowing and return information | 0.808 | Có, top-1 | Trả trực tiếp tại Info Desk. |
-| 4 | A student needs to find a physical course reading placed on reserve. Where is it located? | `utsc-course-reserves#parent-2` — Where are physical course reserves located? | 0.896 | Có, top-1 | 20 bước bên trái InfoDesk; agent trả lời đúng. |
-| 5 | Which service provides a free and secure University of Toronto repository for disseminating and preserving faculty and graduate-student research? | `utsc-research-publishing#parent-10` — TSpace | 0.795 | Có, top-1 | Agent xác định đúng TSpace nhưng không lặp nguyên cụm “University of Toronto Research Repository”. |
+| 1 | What are the UTSC Library's regular opening hours from Monday to Friday between September 8 and December 22, 2026? | `utsc-library-hours#parent-0` — Library Hours | 0.850 | Có, trong top-3 | Agent trả lời đúng 8:00 AM–10:00 PM nhưng bỏ sót ngoại lệ đóng cửa ngày 12/10. |
+| 2 | As an undergraduate student, how long can I borrow regular library items, and what is my item limit? | `utsc-borrowing-policy#parent-1` — Loan privileges by patron type | 0.781 | Có, top-1 | Trả lời đúng 14 ngày và tối đa 50 món. |
+| 3 | Where should a user return a borrowed laptop from the Technology Loans collection? | `utsc-technology-loans#parent-2` — Technology Loans | 0.812 | Có, top-1 | Trả trực tiếp tại Info Desk. |
+| 4 | Which form should be completed to designate another borrower when the patron cannot visit the library because of a disability? | `utsc-borrowing-policy#parent-6` — Designate a Proxy Borrower | 0.823 | Có, top-1 sau khi lọc | Agent chỉ trả đúng “proxy application form”. |
+| 5 | Which service is a free institutional open-access repository for preserving and disseminating papers produced by faculty and graduate researchers? | `utsc-research-publishing#parent-2` — TSpace | 0.731 | Có, top-1 | Agent nhận diện đúng TSpace Research Repository và trả lời có căn cứ. |
 
-**Bao nhiêu câu hỏi trả về chunk có liên quan trong top-3?** 5/5. Điểm agent theo thang 0–2 là 1, 2, 2, 2, 1; tổng 8/10.
+**Bao nhiêu câu hỏi trả về chunk có liên quan trong top-3?** 5/5. Điểm agent theo thang 0–2 là 1, 2, 2, 2, 2; tổng 9/10. Câu 1 chỉ đạt 1/2 vì trả lời đúng giờ thường lệ nhưng bỏ sót ngoại lệ đóng cửa ngày 12/10.
 
-**Kết quả A/B test cho câu 4:** Không lọc và lọc bằng `metadata_filter={"audience": "student"}` đều trả về đúng `utsc-course-reserves#parent-2` ở top-1, score 0.896, có evidence và câu trả lời đúng. Vì vậy bộ lọc không làm thay đổi kết quả trên truy vấn này, nhưng vẫn xác nhận đường chạy metadata hoạt động.
+**Kết quả A/B test cho câu 4:** Không lọc, `utsc-accessibility-services#parent-7` đứng top-1 với score 0.8234 và agent trộn hai biểu mẫu “Pickup Authorization Form” và “proxy application form”, nên đạt 1/2. Khi lọc bằng `metadata_filter={"audience": "student"}`, `utsc-borrowing-policy#parent-6` lên top-1 với score 0.8227; agent chỉ trả đúng “proxy application form” và đạt 2/2. Bộ lọc vì vậy cải thiện trực tiếp độ chính xác theo đối tượng.
 
 **Điều hay nhất tôi học được từ thành viên khác / nhóm khác (qua demo):**
-> Bài học dự kiến cần kiểm chứng qua demo là không có một kích thước chunk tối ưu cho mọi loại tài liệu. Heading/structural có lợi thế với Markdown có cấu trúc rõ, còn Parent-child có thể hữu ích khi chunk nhỏ truy xuất đúng nhưng chưa đủ ngữ cảnh để agent tạo câu trả lời hoàn chỉnh.
+> Bài học rút ra từ demo là không có một kích thước chunk tối ưu cho mọi loại tài liệu. Heading/structural có lợi thế với Markdown có cấu trúc rõ, còn Parent-child có thể hữu ích khi chunk nhỏ truy xuất đúng nhưng chưa đủ ngữ cảnh để agent tạo câu trả lời hoàn chỉnh.
+
+> **Ghi chú đồng bộ:** Sau khi thay corpus theo `REPORT_NHOM.md`, smoke test Parent-child và `benchmark_results_gemini.json` đều ghi nhận 54 parent và 118 child. Kết quả benchmark hiện tại là `[1, 2, 2, 2, 2]`, tổng 9/10.
 
 ---
 
@@ -158,9 +163,9 @@ Chạy **5 câu hỏi đánh giá của nhóm** trên mã nguồn cá nhân củ
 
 | Tiêu chí | Điểm tự đánh giá |
 |----------|-------------------|
-| Khởi động (Warm-up) | / 5 |
-| Hướng tiếp cận của tôi (My Approach) | / 10 |
-| Hoàn thiện code (Core Implementation — tests) | / 30 |
-| Dự đoán độ tương tự (Similarity Predictions) | / 5 |
-| Kết quả truy xuất của tôi (Competition Results) | / 10 |
-| **Tổng phần cá nhân** | **/ 60** |
+| Khởi động (Warm-up) | 5 / 5 |
+| Hướng tiếp cận của tôi (My Approach) | 10 / 10 |
+| Hoàn thiện code (Core Implementation — tests) | 30 / 30 |
+| Dự đoán độ tương tự (Similarity Predictions) | 5 / 5 |
+| Kết quả truy xuất của tôi (Competition Results) | 9 / 10 |
+| **Tổng phần cá nhân** | **59 / 60** |
