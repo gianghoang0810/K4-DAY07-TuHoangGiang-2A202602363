@@ -154,7 +154,7 @@ class ChunkingStrategyComparator:
 
     def compare(self, text: str, chunk_size: int = 200) -> dict:
         safe_chunk_size = max(1, chunk_size)
-        overlap = min(50, safe_chunk_size // 10)
+        overlap = min(50, max(0, safe_chunk_size - 1))
         strategies = {
             "fixed_size": FixedSizeChunker(safe_chunk_size, overlap),
             "by_sentences": SentenceChunker(max_sentences_per_chunk=3),

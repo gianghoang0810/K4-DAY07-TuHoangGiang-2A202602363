@@ -19,7 +19,7 @@ def main():
         if not path.exists():
             continue
         _, content = parse_frontmatter(path)
-        comparison = comparator.compare(content, chunk_size=500)
+        comparison = comparator.compare(content, chunk_size=200)
         
         # Only store the count and avg_length to avoid huge output
         results[filename] = {
