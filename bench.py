@@ -1,9 +1,4 @@
-"""Validate and inspect the UTSC library corpus before benchmarking.
-
-This first-stage runner deliberately does not call an embedding or LLM API.
-It validates the cleaned Markdown files, their frontmatter, and sources.csv so
-that later benchmark failures can be separated from ingestion problems.
-"""
+"""Validate the UTSC corpus, then run the five-query personal benchmark."""
 
 from __future__ import annotations
 
@@ -91,7 +86,7 @@ def validate_corpus(data_dir: Path) -> tuple[list[dict[str, object]], list[str]]
                 "title": metadata.get("title", ""),
                 "audience": audience,
                 "category": metadata.get("category", ""),
-                "characters": len(content),
+                "characters": len(content.strip()),
             }
         )
 
@@ -127,6 +122,23 @@ def main() -> int:
         default=Path("data/utsc-library-services"),
         help="directory containing cleaned Markdown files and sources.csv",
     )
+    parser.add_argument(
+        "--validate-only",
+        action="store_true",
+        help="validate the corpus without calling the embedding or LLM API",
+    )
+    parser.add_argument(
+        "--output",
+        type=Path,
+        default=Path("benchmark_results_gemini.json"),
+        help="JSON benchmark result path",
+    )
+    parser.add_argument(
+        "--text-output",
+        type=Path,
+        default=Path("ket_qua_benchmark.txt"),
+        help="human-readable benchmark result path",
+    )
     args = parser.parse_args()
 
     rows, errors = validate_corpus(args.data_dir)
@@ -148,6 +160,13 @@ def main() -> int:
         return 1
 
     print("\nVALIDATION PASSED")
+    if args.validate_only:
+        return 0
+
+    print("\nRunning five-query Parent-child benchmark...")
+    from bench_gemini import run_benchmark
+
+    run_benchmark(args.data_dir, args.output, args.text_output)
     return 0
 
 

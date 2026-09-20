@@ -1,8 +1,8 @@
 {
   "embedding_backend": "gemini-embedding-001",
   "chat_model": "gemini-3.6-flash",
-  "parent_count": 115,
-  "child_count": 242,
+  "parent_count": 54,
+  "child_count": 118,
   "results": [
     {
       "id": 1,
@@ -18,25 +18,26 @@
           "contains_evidence": false
         },
         {
+          "id": "utsc-ask-librarian#parent-2",
+          "doc_id": "utsc-ask-librarian",
+          "parent_id": "utsc-ask-librarian#parent-2",
+          "section": "Operating Hours",
+          "score": 0.769686280613475,
+          "contains_evidence": false
+        },
+        {
           "id": "utsc-library-hours#parent-1",
           "doc_id": "utsc-library-hours",
           "parent_id": "utsc-library-hours#parent-1",
-          "section": "Library Hours",
-          "score": 0.7596652096920743,
+          "section": "Main Library Building Hours",
+          "score": 0.7560415777699284,
           "contains_evidence": true
-        },
-        {
-          "id": "utsc-library-spaces#parent-9",
-          "doc_id": "utsc-library-spaces",
-          "parent_id": "utsc-library-spaces#parent-9",
-          "section": "Renovations at the U of T Scarborough Library",
-          "score": 0.7348732290819294,
-          "contains_evidence": false
         }
       ],
-      "answer": "Between September 8 and December 22, 2026, the UTSC Library's regular opening hours from Monday to Friday are 8:00 AM to 10:00 PM [2].",
+      "answer": "Between September 8 and December 22, 2026, the regular opening hours for the Main Library Building from Monday to Friday are 8:00 AM - 10:00 PM [3].",
       "relevant_in_top3": true,
       "answer_contains_evidence": false,
+      "answer_contains_forbidden_evidence": false,
       "score": 1
     },
     {
@@ -48,8 +49,8 @@
           "id": "utsc-borrowing-policy#parent-1",
           "doc_id": "utsc-borrowing-policy",
           "parent_id": "utsc-borrowing-policy#parent-1",
-          "section": "Loan privileges by patron type at most University of Toronto Libraries",
-          "score": 0.7638523166608103,
+          "section": "Loan Privileges by Patron Type",
+          "score": 0.7814831173491898,
           "contains_evidence": true
         },
         {
@@ -57,21 +58,22 @@
           "doc_id": "utsc-borrowing-policy",
           "parent_id": "utsc-borrowing-policy#parent-5",
           "section": "Periodicals",
-          "score": 0.7566041160331131,
+          "score": 0.7518545501284483,
           "contains_evidence": false
         },
         {
-          "id": "utsc-borrowing-policy#parent-8",
+          "id": "utsc-borrowing-policy#parent-4",
           "doc_id": "utsc-borrowing-policy",
-          "parent_id": "utsc-borrowing-policy#parent-8",
-          "section": "Unlimited renewals",
-          "score": 0.7362067326656785,
-          "contains_evidence": false
+          "parent_id": "utsc-borrowing-policy#parent-4",
+          "section": "Popular Collection",
+          "score": 0.7321202960412094,
+          "contains_evidence": true
         }
       ],
-      "answer": "As an undergraduate student, the loan period for regular library items is 14 days (with an unlimited maximum potential loan period), and the item limit is 50 items [1].",
+      "answer": "As an undergraduate student, you can borrow regular library items for 14 days, and your item limit is 50 items [1].",
       "relevant_in_top3": true,
       "answer_contains_evidence": true,
+      "answer_contains_forbidden_evidence": false,
       "score": 2
     },
     {
@@ -80,167 +82,180 @@
       "gold": "A borrowed laptop should be returned directly to the Info Desk.",
       "top3": [
         {
+          "id": "utsc-technology-loans#parent-2",
+          "doc_id": "utsc-technology-loans",
+          "parent_id": "utsc-technology-loans#parent-2",
+          "section": "Return Policy and Locations",
+          "score": 0.8124175770972732,
+          "contains_evidence": true
+        },
+        {
           "id": "utsc-technology-loans#parent-1",
           "doc_id": "utsc-technology-loans",
           "parent_id": "utsc-technology-loans#parent-1",
-          "section": "Borrowing and return information",
-          "score": 0.8078941991310382,
-          "contains_evidence": true
+          "section": "Categories and Pickup Locations",
+          "score": 0.77866313430288,
+          "contains_evidence": false
         },
         {
           "id": "utsc-borrowing-policy#parent-10",
           "doc_id": "utsc-borrowing-policy",
           "parent_id": "utsc-borrowing-policy#parent-10",
           "section": "Returns",
-          "score": 0.7289450624246387,
+          "score": 0.725709357907589,
           "contains_evidence": false
         }
       ],
-      "answer": "A borrowed laptop should be returned directly to the Info Desk [1].",
+      "answer": "A borrowed laptop must be returned directly to the Info Desk [1].",
       "relevant_in_top3": true,
       "answer_contains_evidence": true,
+      "answer_contains_forbidden_evidence": false,
       "score": 2
     },
     {
       "id": 4,
-      "query": "A student needs to find a physical course reading placed on reserve. Where is it located?",
-      "gold": "Physical course reserves are located 20 steps to the left of the InfoDesk at the UTSC Library.",
+      "query": "Which form should be completed to designate another borrower when the patron cannot visit the library because of a disability?",
+      "gold": "The patron should complete the proxy application form to designate another borrower.",
       "top3": [
         {
-          "id": "utsc-course-reserves#parent-2",
-          "doc_id": "utsc-course-reserves",
-          "parent_id": "utsc-course-reserves#parent-2",
-          "section": "Where are physical course reserves located?",
-          "score": 0.8958110168809114,
+          "id": "utsc-borrowing-policy#parent-6",
+          "doc_id": "utsc-borrowing-policy",
+          "parent_id": "utsc-borrowing-policy#parent-6",
+          "section": "Designate a Proxy Borrower",
+          "score": 0.8227130798946649,
           "contains_evidence": true
         },
         {
-          "id": "utsc-course-reserves#parent-1",
+          "id": "utsc-course-reserves#parent-0",
           "doc_id": "utsc-course-reserves",
-          "parent_id": "utsc-course-reserves#parent-1",
-          "section": "What are course reserves?",
-          "score": 0.7738159894053406,
+          "parent_id": "utsc-course-reserves#parent-0",
+          "section": "Course reserves and short-term loans",
+          "score": 0.6345212273992418,
           "contains_evidence": false
         },
         {
-          "id": "utsc-course-reserves#parent-3",
-          "doc_id": "utsc-course-reserves",
-          "parent_id": "utsc-course-reserves#parent-3",
-          "section": "Where are online course reserves located?",
-          "score": 0.7636058544008766,
+          "id": "utsc-borrowing-policy#parent-2",
+          "doc_id": "utsc-borrowing-policy",
+          "parent_id": "utsc-borrowing-policy#parent-2",
+          "section": "Other Borrowers",
+          "score": 0.6258439232103279,
           "contains_evidence": false
         }
       ],
-      "answer": "Physical course reserves are located in the Course Reserves/Short Term Loan section at the UTSC Library [1], [2], specifically 20 steps to the left of the InfoDesk [1].",
+      "answer": "To designate another borrower when unable to visit the library because of a disability, you must complete the proxy application form [1].",
       "relevant_in_top3": true,
       "answer_contains_evidence": true,
+      "answer_contains_forbidden_evidence": false,
       "score": 2
     },
     {
       "id": 5,
-      "query": "Which service provides a free and secure University of Toronto repository for disseminating and preserving faculty and graduate-student research?",
-      "gold": "TSpace – University of Toronto Research Repository.",
+      "query": "Which service is a free institutional open-access repository for preserving and disseminating papers produced by faculty and graduate researchers?",
+      "gold": "TSpace Research Repository.",
       "top3": [
         {
-          "id": "utsc-research-publishing#parent-10",
+          "id": "utsc-research-publishing#parent-2",
           "doc_id": "utsc-research-publishing",
-          "parent_id": "utsc-research-publishing#parent-10",
-          "section": "TSpace - University of Toronto Research Repository",
-          "score": 0.7952489014824337,
+          "parent_id": "utsc-research-publishing#parent-2",
+          "section": "Publishing & Repository Platforms",
+          "score": 0.7309170781217268,
           "contains_evidence": true
         },
         {
-          "id": "utsc-research-publishing#parent-11",
+          "id": "utsc-research-publishing#parent-3",
           "doc_id": "utsc-research-publishing",
-          "parent_id": "utsc-research-publishing#parent-11",
-          "section": "Journal Production Services",
-          "score": 0.7604269199707209,
+          "parent_id": "utsc-research-publishing#parent-3",
+          "section": "Faculty Services and Delivery",
+          "score": 0.708571846724135,
           "contains_evidence": false
         },
         {
-          "id": "utsc-research-publishing#parent-12",
+          "id": "utsc-research-publishing#parent-0",
           "doc_id": "utsc-research-publishing",
-          "parent_id": "utsc-research-publishing#parent-12",
-          "section": "U of T Dataverse in Borealis",
-          "score": 0.7206664486994216,
+          "parent_id": "utsc-research-publishing#parent-0",
+          "section": "Research and publishing services for faculty",
+          "score": 0.6534118532030851,
           "contains_evidence": false
         }
       ],
-      "answer": "TSpace provides a free and secure research repository for disseminating and preserving faculty and graduate student research [1].",
+      "answer": "The service is the TSpace Research Repository [1].",
       "relevant_in_top3": true,
-      "answer_contains_evidence": false,
-      "score": 1
+      "answer_contains_evidence": true,
+      "answer_contains_forbidden_evidence": false,
+      "score": 2
     }
   ],
   "ab_test_query_4": {
     "unfiltered": {
       "id": 4,
-      "query": "A student needs to find a physical course reading placed on reserve. Where is it located?",
-      "gold": "Physical course reserves are located 20 steps to the left of the InfoDesk at the UTSC Library.",
+      "query": "Which form should be completed to designate another borrower when the patron cannot visit the library because of a disability?",
+      "gold": "The patron should complete the proxy application form to designate another borrower.",
       "top3": [
         {
-          "id": "utsc-course-reserves#parent-2",
-          "doc_id": "utsc-course-reserves",
-          "parent_id": "utsc-course-reserves#parent-2",
-          "section": "Where are physical course reserves located?",
-          "score": 0.8958110168809114,
+          "id": "utsc-accessibility-services#parent-7",
+          "doc_id": "utsc-accessibility-services",
+          "parent_id": "utsc-accessibility-services#parent-7",
+          "section": "Responsibilities of Persons with Disabilities",
+          "score": 0.8234144066505433,
+          "contains_evidence": false
+        },
+        {
+          "id": "utsc-borrowing-policy#parent-6",
+          "doc_id": "utsc-borrowing-policy",
+          "parent_id": "utsc-borrowing-policy#parent-6",
+          "section": "Designate a Proxy Borrower",
+          "score": 0.8227130798946649,
           "contains_evidence": true
         },
         {
-          "id": "utsc-course-reserves#parent-1",
-          "doc_id": "utsc-course-reserves",
-          "parent_id": "utsc-course-reserves#parent-1",
-          "section": "What are course reserves?",
-          "score": 0.7738159894053406,
-          "contains_evidence": false
-        },
-        {
-          "id": "utsc-course-reserves#parent-3",
-          "doc_id": "utsc-course-reserves",
-          "parent_id": "utsc-course-reserves#parent-3",
-          "section": "Where are online course reserves located?",
-          "score": 0.7636058544008766,
+          "id": "utsc-accessibility-services#parent-3",
+          "doc_id": "utsc-accessibility-services",
+          "parent_id": "utsc-accessibility-services#parent-3",
+          "section": "Retrieval of Books",
+          "score": 0.6931214607617008,
           "contains_evidence": false
         }
       ],
-      "answer": "Physical course reserves are located in the Course Reserves/Short Term Loan section at the UTSC Library [1], [2], specifically 20 steps to the left of the InfoDesk [1].",
+      "answer": "To designate another borrower when a patron cannot visit the library due to a disability, they can complete either the Pickup Authorization Form at the Information and Reference Desk [1] or the proxy application form [2].",
       "relevant_in_top3": true,
-      "answer_contains_evidence": true,
-      "score": 2
+      "answer_contains_evidence": false,
+      "answer_contains_forbidden_evidence": true,
+      "score": 1
     },
     "audience_student": {
       "id": 4,
-      "query": "A student needs to find a physical course reading placed on reserve. Where is it located?",
-      "gold": "Physical course reserves are located 20 steps to the left of the InfoDesk at the UTSC Library.",
+      "query": "Which form should be completed to designate another borrower when the patron cannot visit the library because of a disability?",
+      "gold": "The patron should complete the proxy application form to designate another borrower.",
       "top3": [
         {
-          "id": "utsc-course-reserves#parent-2",
-          "doc_id": "utsc-course-reserves",
-          "parent_id": "utsc-course-reserves#parent-2",
-          "section": "Where are physical course reserves located?",
-          "score": 0.8958110168809114,
+          "id": "utsc-borrowing-policy#parent-6",
+          "doc_id": "utsc-borrowing-policy",
+          "parent_id": "utsc-borrowing-policy#parent-6",
+          "section": "Designate a Proxy Borrower",
+          "score": 0.8227130798946649,
           "contains_evidence": true
         },
         {
-          "id": "utsc-course-reserves#parent-1",
+          "id": "utsc-course-reserves#parent-0",
           "doc_id": "utsc-course-reserves",
-          "parent_id": "utsc-course-reserves#parent-1",
-          "section": "What are course reserves?",
-          "score": 0.7738159894053406,
+          "parent_id": "utsc-course-reserves#parent-0",
+          "section": "Course reserves and short-term loans",
+          "score": 0.6345212273992418,
           "contains_evidence": false
         },
         {
-          "id": "utsc-course-reserves#parent-3",
-          "doc_id": "utsc-course-reserves",
-          "parent_id": "utsc-course-reserves#parent-3",
-          "section": "Where are online course reserves located?",
-          "score": 0.7636058544008766,
+          "id": "utsc-borrowing-policy#parent-2",
+          "doc_id": "utsc-borrowing-policy",
+          "parent_id": "utsc-borrowing-policy#parent-2",
+          "section": "Other Borrowers",
+          "score": 0.6258439232103279,
           "contains_evidence": false
         }
       ],
-      "answer": "Physical course reserves are located in the Course Reserves/Short Term Loan section at the UTSC Library [1], [2], specifically 20 steps to the left of the InfoDesk [1].",
+      "answer": "To designate another borrower when unable to visit the library because of a disability, you must complete the proxy application form [1].",
       "relevant_in_top3": true,
       "answer_contains_evidence": true,
+      "answer_contains_forbidden_evidence": false,
       "score": 2
     }
   }

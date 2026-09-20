@@ -1,0 +1,55 @@
+UTSC Library Parent-child Benchmark
+Embedding backend: gemini-embedding-001
+Chat model: gemini-3.6-flash
+Parents: 54 | Children: 118
+
+Query 1: What are the UTSC Library's regular opening hours from Monday to Friday between September 8 and December 22, 2026?
+Gold answer: The library's regular weekday hours are 8:00 AM to 10:00 PM. It is closed on October 12, 2026.
+Score: 1/2
+Top-3:
+  1. doc_id=utsc-library-hours id=utsc-library-hours#parent-0 score=0.8495 evidence=False
+  2. doc_id=utsc-ask-librarian id=utsc-ask-librarian#parent-2 score=0.7697 evidence=False
+  3. doc_id=utsc-library-hours id=utsc-library-hours#parent-1 score=0.7560 evidence=True
+Agent answer: Between September 8 and December 22, 2026, the regular opening hours for the Main Library Building from Monday to Friday are 8:00 AM - 10:00 PM [3].
+
+Query 2: As an undergraduate student, how long can I borrow regular library items, and what is my item limit?
+Gold answer: Undergraduate students have a regular loan period of 14 days and an item limit of 50.
+Score: 2/2
+Top-3:
+  1. doc_id=utsc-borrowing-policy id=utsc-borrowing-policy#parent-1 score=0.7815 evidence=True
+  2. doc_id=utsc-borrowing-policy id=utsc-borrowing-policy#parent-5 score=0.7519 evidence=False
+  3. doc_id=utsc-borrowing-policy id=utsc-borrowing-policy#parent-4 score=0.7321 evidence=True
+Agent answer: As an undergraduate student, you can borrow regular library items for 14 days, and your item limit is 50 items [1].
+
+Query 3: Where should a user return a borrowed laptop from the Technology Loans collection?
+Gold answer: A borrowed laptop should be returned directly to the Info Desk.
+Score: 2/2
+Top-3:
+  1. doc_id=utsc-technology-loans id=utsc-technology-loans#parent-2 score=0.8124 evidence=True
+  2. doc_id=utsc-technology-loans id=utsc-technology-loans#parent-1 score=0.7787 evidence=False
+  3. doc_id=utsc-borrowing-policy id=utsc-borrowing-policy#parent-10 score=0.7257 evidence=False
+Agent answer: A borrowed laptop must be returned directly to the Info Desk [1].
+
+Query 4: Which form should be completed to designate another borrower when the patron cannot visit the library because of a disability?
+Gold answer: The patron should complete the proxy application form to designate another borrower.
+Score: 2/2
+Top-3:
+  1. doc_id=utsc-borrowing-policy id=utsc-borrowing-policy#parent-6 score=0.8227 evidence=True
+  2. doc_id=utsc-course-reserves id=utsc-course-reserves#parent-0 score=0.6345 evidence=False
+  3. doc_id=utsc-borrowing-policy id=utsc-borrowing-policy#parent-2 score=0.6258 evidence=False
+Agent answer: To designate another borrower when unable to visit the library because of a disability, you must complete the proxy application form [1].
+
+Query 5: Which service is a free institutional open-access repository for preserving and disseminating papers produced by faculty and graduate researchers?
+Gold answer: TSpace Research Repository.
+Score: 2/2
+Top-3:
+  1. doc_id=utsc-research-publishing id=utsc-research-publishing#parent-2 score=0.7309 evidence=True
+  2. doc_id=utsc-research-publishing id=utsc-research-publishing#parent-3 score=0.7086 evidence=False
+  3. doc_id=utsc-research-publishing id=utsc-research-publishing#parent-0 score=0.6534 evidence=False
+Agent answer: The service is the TSpace Research Repository [1].
+
+A/B query 4:
+  unfiltered: score=1/2 relevant_in_top3=True answer_contains_evidence=False
+  audience_student: score=2/2 relevant_in_top3=True answer_contains_evidence=True
+
+Total score: 9/10
